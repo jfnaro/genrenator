@@ -1,0 +1,11 @@
+h1, h2, h3, th, td, form, table {
+    text-align: center;
+}
+
+table {
+    margin: auto;
+}
+
+body {
+    background-color: #1551aabd;
+}

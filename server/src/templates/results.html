@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Genre-nator</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylin.css') }}" />
+    </head>
+    <body>
+        <main class="main-content">
+            <div class="main-section">
+                <h1>Genre-nator</h1>
+                <br>
+
+                <!--errors to be implimented after model is integrated-->
+                <!-- {% if error_str %}
+                    <p class="error-text">{{ error_str }}</p>
+                {% endif %}
+                {% if success_str %}
+                    <p class="success-text">Successfully uploaded song. Please wait for results</p>
+                {% endif %} -->
+                <h2>{{ song_results.title }}</h2>
+                <table class="song-data-container">
+                    <!--returned song data goes here-->
+                    <div class="song-block">
+                        <tr>
+                            <th>Genre</th>
+                            <th>Match Ratio</th>
+                            <th>Match Value</th>
+                        </tr>
+                        {% for song in song_results.song_analysis %}
+                        <tr>
+                            <td>{{ song.genre }}</td>
+                            <td>
+                                <progress value={{ song.percentage }} max="1"></progress>
+                            </td>
+                            <td>{{ song.percentage }}</td>
+                        </tr>
+                        {% endfor %}
+                    </div>
+                </table>
+                <br>
+                <h2>Upload a song</h2>
+                <h3>Please be patient</h3>
+                <form action="/" method="POST" enctype="multipart/form-data">
+                    <label for="song">Song:</label>
+                    <!--may need to change aceptable file formats-->
+                    <input type="file" id="song" name="song" accept=".wav">
+                    <input type="submit" value="Upload Song" />
+                </form>
+            </div>
+        </main>
+    </body>
+</html>
